@@ -1,0 +1,13 @@
+version: "3.8"
+
+services:
+  asm-dev:
+    build: .
+    volumes:
+      - ./src:/asm-work/src
+    security_opt:
+      - seccomp:unconfined # Needed for GDB to work properly
+    cap_add:
+      - SYS_PTRACE # Also needed for debugging
+    stdin_open: true # Keep STDIN open
+    tty: true # Allocate a pseudo-TTY
